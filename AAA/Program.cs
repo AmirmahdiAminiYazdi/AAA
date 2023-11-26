@@ -1,3 +1,4 @@
+using AAA.Infra;
 using AAA.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,13 +11,13 @@ builder.Services.AddDbContext<AAADbContext>(x=>x.UseNpgsql(connectionString));
 builder.Services.AddIdentity<IdentityUser,IdentityRole>(x=>
 {
     //example 1
-    x.Password.RequiredLength = 4;
-    x.Password.RequiredUniqueChars = 2;
-    x.Password.RequireNonAlphanumeric = false;
-    x.Password.RequireUppercase = false;
-    x.Password.RequireLowercase = false;
-    x.Password.RequireDigit = false;
-}).AddEntityFrameworkStores<AAADbContext>();
+    //x.Password.RequiredLength = 4;
+    //x.Password.RequiredUniqueChars = 2;
+    //x.Password.RequireNonAlphanumeric = false;
+    //x.Password.RequireUppercase = false;
+    //x.Password.RequireLowercase = false;
+    //x.Password.RequireDigit = false;
+}).AddEntityFrameworkStores<AAADbContext>().AddPasswordValidator<UsernameInPasswordValidator>();
 builder.Services.AddRazorPages();
 builder.Services.AddMvc();
 
