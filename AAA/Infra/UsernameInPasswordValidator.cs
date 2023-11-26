@@ -4,8 +4,21 @@ namespace AAA.Infra
 {
     public class UsernameInPasswordValidator : IPasswordValidator<IdentityUser>
     {
+        private readonly List<string> blackList = new()
+        {
+            "database",".netframework","redis"
+        };
         public Task<IdentityResult> ValidateAsync(UserManager<IdentityUser> manager, IdentityUser user, string? password)
         {
+            foreach (var item in blackList) 
+            { 
+                if(password.Contains(item))
+                          return Task.FromResult(IdentityResult.Failed(new IdentityError
+                          {
+                              Code = "password is in black list",
+                              Description = "You can not use this password, because it's in black list",
+                          }));
+            }
             if (password.Contains(user.UserName,StringComparison.OrdinalIgnoreCase))
             {
                 return Task.FromResult(IdentityResult.Failed(new IdentityError

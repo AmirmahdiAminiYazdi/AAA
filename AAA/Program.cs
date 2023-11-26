@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AAADbContext>(x=>x.UseNpgsql(connectionString));
-builder.Services.AddIdentity<IdentityUser,IdentityRole>(x=>
+builder.Services.AddIdentity<IdentityUser, IdentityRole>(x =>
 {
     //example 1
     //x.Password.RequiredLength = 4;
@@ -17,7 +17,19 @@ builder.Services.AddIdentity<IdentityUser,IdentityRole>(x=>
     //x.Password.RequireUppercase = false;
     //x.Password.RequireLowercase = false;
     //x.Password.RequireDigit = false;
-}).AddEntityFrameworkStores<AAADbContext>().AddPasswordValidator<UsernameInPasswordValidator>();
+
+    // config username struct
+    //x.User.RequireUniqueEmail = true;
+    //x.User.AllowedUserNameCharacters = "qwertyuiopQWERTYUIOP";
+}).AddEntityFrameworkStores<AAADbContext>();
+
+// example config  IUserValidator
+//.AddUserValidator<CustomeUserValidator>();
+
+
+// example config  IPasswordValidator
+//.AddPasswordValidator<UsernameInPasswordValidator>();
+
 builder.Services.AddRazorPages();
 builder.Services.AddMvc();
 
