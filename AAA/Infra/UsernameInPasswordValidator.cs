@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AAA.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace AAA.Infra
 {
-    public class UsernameInPasswordValidator : IPasswordValidator<IdentityUser>
+    public class UsernameInPasswordValidator : IPasswordValidator<customIdentityUser>
     {
         private readonly List<string> blackList = new()
         {
             "database",".netframework","redis"
         };
-        public Task<IdentityResult> ValidateAsync(UserManager<IdentityUser> manager, IdentityUser user, string? password)
+        public Task<IdentityResult> ValidateAsync(UserManager<customIdentityUser> manager, customIdentityUser user, string? password)
         {
             foreach (var item in blackList) 
             { 

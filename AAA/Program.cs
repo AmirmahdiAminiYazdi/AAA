@@ -8,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<AAADbContext>(x=>x.UseNpgsql(connectionString));
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(x =>
+builder.Services.AddIdentity<customIdentityUser, IdentityRole>(x =>
 {
     //example 1
     //x.Password.RequiredLength = 4;

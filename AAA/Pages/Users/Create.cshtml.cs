@@ -1,3 +1,4 @@
+using AAA.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -7,16 +8,16 @@ namespace AAA.Pages.Users
 {
     public class CreateModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<customIdentityUser> _userManager;
 
-        public CreateModel(UserManager<IdentityUser>userManager)
+        public CreateModel(UserManager<customIdentityUser> userManager)
         {
             _userManager = userManager;
         }
-        //[BindProperty]
-        //public string Name { get; set; }
-        //[BindProperty]
-        //public string Family { get; set; }
+        [BindProperty]
+        public string FirstName { get; set; }
+        [BindProperty]
+        public string LastName { get; set; }
         [BindProperty]
         public string UserName { get; set; }
         [BindProperty]
@@ -31,10 +32,13 @@ namespace AAA.Pages.Users
         {
             if(ModelState.IsValid) 
             {
-                IdentityUser user = new()
+                customIdentityUser user = new()
                 {
                     UserName = UserName,
-                    Email = Email
+                    Email = Email,
+                    FirstName = FirstName,
+                    LastName = LastName,
+
                 };
                 IdentityResult result = await _userManager.CreateAsync(user,Password);
                 if (result.Succeeded)
