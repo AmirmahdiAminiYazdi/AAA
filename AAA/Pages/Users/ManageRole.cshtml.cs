@@ -22,7 +22,15 @@ namespace AAA.Pages.Users
             _userManager = userManager;
             _roleManager = roleManager;
         }
-        public async Task<IActionResult> OnGet(string id)
+        public async Task OnGet(string id)
+        {
+            CurentUser = await _userManager.FindByIdAsync(id);
+
+            UserRoles = (await _userManager.GetRolesAsync(CurentUser)).ToList();
+            AllRoles = _roleManager.Roles.ToList();
+            
+        }
+        public async Task<IActionResult> OnPostAsync()
         {
             CurentUser = await _userManager.FindByIdAsync(Id);
             AllRoles = _roleManager.Roles.ToList();
@@ -44,7 +52,8 @@ namespace AAA.Pages.Users
                     }
                 }
             }
-            return RedirectToPage("List");
+            return RedirectToPage("ListUser");
+
         }
     }
 }

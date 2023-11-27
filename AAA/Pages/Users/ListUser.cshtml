@@ -29,13 +29,13 @@
         {
             <tr>
                 <td>@user.Id</td>
-                 <td>@user.FirstName</td>
-                <td>@user.LastName</td> 
+                <td>@user.FirstName</td>
+                <td>@user.LastName</td>
                 <td>@user.UserName</td>
                 <td>@user.Email</td>
                 <td>
                     <a asp-page="Edit" asp-route-id="@user.Id" class="btn btn-info">Edit</a>
-                    <a asp-page="ManamgeRole" asp-route-id="@user.Id" class="btn btn-info">ManamgeRole</a>
+                    <a asp-page="ManageRole" asp-route-id="@user.Id" class="btn btn-info">ManageRole</a>
 
                     <form method="post">
                         <input type="hidden" name="id" value="@user.Id">

@@ -7,11 +7,11 @@
 <table class="table table-striped table-bordered">
     <tr>
         <td>Name</td>
-        <td>@Model.CurentUser.Name</td>
+        <td>@Model.CurentUser.FirstName</td>
     </tr>
     <tr>
         <td>Family</td>
-        <td>@Model.CurentUser.Family</td>
+        <td>@Model.CurentUser.LastName</td>
     </tr>
     <tr>
         <td>Email</td>
@@ -30,6 +30,6 @@
     }
     <div class="py-2">
         <button type="submit" class="btn btn-primary">Update Roles</button>
-        <a asp-page="list" class="btn btn-secondary">Return</a>
+        <a asp-page="ListUser" class="btn btn-secondary">Return</a>
     </div>
 </form>
